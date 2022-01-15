@@ -1,0 +1,103 @@
+<div class="container" cg-busy="promise" ng-init="getMockInfo()">
+    <!-- BreadCrumb Tail -->
+    <ol class="breadcrumb">
+        <li><a ng-href="#/">{{'general.breadcrumb.home'| translate }}</a></li>
+        <li><a ng-href="#/mocks/search">{{'general.breadcrumb.mocks'| translate }}</a></li>
+        <li class="active">{{::operationIdentification | translate}}</li>
+    </ol>
+
+    <!-- FORM  -->
+    <form name="contextForm" class="form-horizontal" novalidate>
+        <ul class="nav nav-tabs">
+            <li class="active"><a data-toggle="tab" data-target="#summary" href="">{{'mockDetails.label.summary'| translate}}</a></li>
+            <li><a data-toggle="tab" data-target="#operations" href="">{{'mockDetails.label.operations'| translate}}</a></li>
+            <li><a data-toggle="tab" data-target="#scenarios" href="">{{'mockDetails.label.scenarios'| translate}}</a></li>
+        </ul>
+
+        <div class="tab-content tab-content-margin">
+            <div class="tab-pane fade in active" id="summary">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label required">{{'mockDetails.label.name'| translate}}</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="mock.name" required></input>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label required">{{'mockDetails.label.basePath'| translate}}</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" ng-model="mock.basePath" required></input>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="operations">
+                    <button class="btn btn-sm btn-default" style="float: right;" id="btnCreateOperation" ng-click="addOperation()"><strong>{{'general.button.new' | translate}}</strong> <span class="glyphicon glyphicon-plus"></span></button>
+                    <table id="tbOperations" class="table table-striped table-hover">
+                        <thead>                
+                            <tr>
+                                <td style="width: 120px"><strong> {{'mockDetails.operation.table.method'| translate}} </strong></td>
+                                <td><strong> {{'mockDetails.operation.table.path'| translate}} </strong></td>
+                                <td class="text-center" style="width: 275px"><strong> {{'mockDetails.operation.table.actions' | translate}} </strong></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- TABLE DATA -->
+                            <tr ng-repeat="operation in mock.operations">
+                                <td> {{operation.method}} </td>
+                                <td> {{operation.path}} </td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-default" id="btnEditOperation-{{$index}}" ng-click="updateOperation(operation)"><strong>{{'general.button.edit' | translate}}</strong> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                                    <button class="btn btn-sm btn-danger" id="btnDeleteOperation-{{$index}}" ng-click="removeOperation(operation)"><strong>{{'general.button.delete' | translate}}</strong> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                                </td>
+                            </tr>
+                            <!-- NO DATA MESSAGE -->
+                            <tr><td class="text-center" ng-if="mockList.length === 0" colspan="5">{{'general.noteMessage.noData' | translate}}</td></tr>
+                        </tbody>
+                    </table>
+            </div>
+
+            <div class="tab-pane fade" id="scenarios">
+                <div ng-repeat="operationScenario in mock.operations">
+                    <h3>{{operationScenario.method}} - {{operationScenario.path}}</h3>
+                    <button class="btn btn-sm btn-default" style="float: right;" id="btnCreateScenario-{{operationScenario}}" ng-click="addScenario(operationScenario)"><strong>{{'general.button.new' | translate}}</strong> <span class="glyphicon glyphicon-plus"></span></button>
+                    <table id="tbOperations" class="table table-striped table-hover">
+                        <thead>                
+                            <tr>
+                                <td style="width: 50px"><strong> {{'mockDetails.scenario.table.order'| translate}}</strong></td>
+                                <td><strong> {{'mockDetails.scenario.table.name'| translate}} </strong></td>
+                                <td style="width: 120px"><strong> {{'mockDetails.scenario.table.httpCode'| translate}} </strong></td>
+                                <td style="width: 50px"><strong> {{'mockDetails.scenario.table.isDefault'| translate}} </strong></td>
+                                <td class="text-center" style="width: 275px"><strong> {{'mockDetails.scenario.table.actions' | translate}} </strong></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- TABLE DATA -->
+                            <tr ng-repeat="scenario in operationScenario.scenarios | orderBy: 'order'">
+                                <td class="text-center"> {{scenario.order}} </td>
+                                <td> {{scenario.name}} </td>
+                                <td class="text-center"> {{scenario.httpCode}} </td>
+                                <td class="text-center"> 
+                                    <span ng-if="scenario.default" class="glyphicon glyphicon-ok icon-success"></span> 
+                                    <span ng-if="!scenario.default" class="glyphicon glyphicon-remove icon-error"></span> 
+                                </td>
+                                <td class="text-center">
+                                    <button class="btn btn-sm btn-default" id="btnUpScenario-{{$index}}" ng-click="sendUp(operationScenario, $index)" ng-disabled="$first"><span class="glyphicon glyphicon-menu-up"></span></button>
+                                    <button class="btn btn-sm btn-default" id="btnDownScenario-{{$index}}" ng-click="sendDown(operationScenario, $index)" ng-disabled="$last"><span class="glyphicon glyphicon-menu-down"></span></button>
+                                    
+                                    <button class="btn btn-sm btn-default" id="btnEditScenario-{{$index}}" ng-click="updateScenario(scenario)"><strong>{{'general.button.edit' | translate}}</strong> <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></button>
+                                    <button class="btn btn-sm btn-danger" id="btnRemoveScenario-{{$index}}" ng-disabled="scenario.default" ng-click="removeScenario(operationScenario, scenario)"><strong>{{'general.button.delete' | translate}}</strong> <span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button>
+                                </td>
+                            </tr>
+                            <!-- NO DATA MESSAGE -->
+                            <tr><td class="text-center" ng-if="mockList.length === 0" colspan="5">{{'general.noteMessage.noData' | translate}}</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" style="float: right; margin-top: 50px;">
+            <button id="btnSaveRule" class="btn btn-default" ng-click="backToSearch()">{{'general.button.cancel'| translate}}</button>
+            <button id="btnSaveRule" class="btn btn-success" ng-disabled="!contextForm.$valid" ng-click="saveMock()">{{'general.button.save'| translate}}</button>
+        </div>
+    </form>
+</div>

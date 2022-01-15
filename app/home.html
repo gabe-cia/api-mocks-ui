@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html ng-app="app">
+    <head>
+        <title>Sensedia - API Mock</title>
+        <meta charset="utf-8">
+
+        <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico" />
+
+        <link rel="stylesheet" type="text/css" href="assets/styles/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="assets/styles/angular-busy.min.css" />
+        <link rel="stylesheet" type="text/css" href="assets/styles/application.css" />
+        <link rel="stylesheet" type="text/css" href="assets/styles/toaster.min.css" />
+        <link rel="stylesheet" type="text/css" href="assets/styles/angular-material.min.css"/>
+
+        <script type="text/javascript" src="lib/angular.min.js"></script>
+        <script type="text/javascript" src="lib/ui-bootstrap-tpls.min.js"></script>
+        <script type="text/javascript" src="lib/angular-animate.min.js"></script>
+        <script type="text/javascript" src="lib/angular-busy.min.js"></script>
+        <script type="text/javascript" src="lib/angular-cookies.js"></script>
+        <script type="text/javascript" src="lib/angular-route.min.js"></script>
+        <script type="text/javascript" src="lib/jquery-1.11.3.min.js"></script>
+        <script type="text/javascript" src="lib/bootstrap.min.js"></script>
+        <script type="text/javascript" src="lib/angular-sanitize.min.js"></script>
+        <script type="text/javascript" src="lib/angular-translate.min.js"></script>
+        <script type="text/javascript" src="lib/angular-translate-loader-static-files.min.js"></script>
+        <script type="text/javascript" src="lib/cryptoJs-md5.js"></script>
+        <script type="text/javascript" src="lib/toaster.min.js"></script>
+        <script type="text/javascript" src="lib/angular-aria.min.js"></script>
+        <script type="text/javascript" src="lib/angular-material.min.js"></script>
+        <script type="text/javascript" src="lib/csslint.js"></script>
+
+        <script type="text/javascript" src="app.js"></script>
+        <script type="text/javascript" src="app.constants.js"></script>
+        <script type="text/javascript" src="app.routes.js"></script>
+
+        <script type="text/javascript" src="common/filters/StringFilter.js"></script>
+        <script type="text/javascript" src="common/mechanisms/RESTServiceManager.js"></script>
+        <script type="text/javascript" src="common/directives/Thumbnail.js"></script>
+
+        <script type="text/javascript" src="core/HomeController.js"></script>
+        
+        <script type="text/javascript" src="core/mocks/MockServices.js"></script>
+        <script type="text/javascript" src="core/mocks/SearchMocksController.js"></script>
+        <script type="text/javascript" src="core/mocks/MockDetailsController.js"></script>
+    </head>
+    <body ng-controller="HomeController">
+        <!-- Navigation Area -->
+        <nav class="navbar navbar-default" ng-controller="HomeController as homeController">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mnuiNavbar" aria-expanded="false">
+                        <span class="sr-only"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="home.html" style="padding: 0px 15px;">
+                        <img alt="Brand" src="assets/images/img_logo.png" style="margin: 5px; height: 40px;">
+                    </a>
+                </div>
+
+                <!-- Menu Characters -->
+                <div class="collapse navbar-collapse" id="mnuiNavbar">
+                    <ul class="nav navbar-nav">
+                        <li>
+                            <a id="mnuACharacters" href="#/mocks/search">{{'home.menu.mocks.label'| translate }}</a>             
+                        </li>
+                    </ul>
+
+                    <!-- Menu Comics -->
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a id="mnuComics" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{'home.menu.help.label'| translate }}<span class="caret"></span></a>             
+                            <ul class="dropdown-menu">
+                                <li><a id="mnuiSearchStories" href="#/about ">{{'home.menu.help.about'| translate }}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content will be placed here -->
+        <div id="mainContent" ng-view=""></div>
+
+        <!-- Footer panel -->
+        <footer class="panel-footer label-version">Sensedia API Mocks - Powered by Consultoria <div style= "float:right">{{'general.label.version'| translate }}</div></footer>
+    <toaster-container></toaster-container>
+</body>
+</html>

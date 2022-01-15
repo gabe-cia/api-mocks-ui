@@ -1,0 +1,13 @@
+{
+  "name": "api-mocks-ui",
+  "version": "1.0.0",
+  "main": "index.html",
+  "private": true,
+  "dependencies": {
+    "bower": "^1.8.13",
+    "gulp": "^4.0.2",
+    "gulp-replace": "^1.0.0",
+    "gulp-webserver": "^0.9.1",
+    "jshint-stylish": "2.2.1"
+  }
+}

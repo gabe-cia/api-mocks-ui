@@ -1,0 +1,116 @@
+{
+    "general": {
+        "label": {
+            "version": "Version 1.0.0"
+        },
+        "button": {
+            "edit": "Editar",
+            "delete": "Deletar",
+            "new": "Novo",
+            "cancel": "Cancelar",
+            "clone": "Clonar",
+            "next": "Avançar",
+            "save": "Salvar"
+        },
+        "breadcrumb": {
+            "home": "Home",
+            "mocks": "Mocks",
+            "new": "Novo",
+            "clone": "Clone"
+        },
+        "pagination": {
+            "button": {
+                "first": "Primeiro",
+                "previous": "Anterior",
+                "next": "Próximo",
+                "last": "Ultimo"
+            }
+        },
+        "search": {
+            "mockName": "Mock Name",
+            "title": "Título"
+        },
+        "errorMessage": {
+            "timeout" : "A requisição atingiu o tempo limite de timeout. Talvez o serevidor esteja ocupado. Tente novamente mais tarde."
+        },
+        "noteMessage": {
+            "noData": "Nenhum dado encontrado"
+        }
+    },
+    "home": {
+        "menu": {
+            "list": "List",
+            "mocks": {
+                "label": "Mocks"
+            },
+            "help": {
+                "label": "Ajuda",
+                "about": "Sobre"
+            }
+        }
+    },
+    "searchMocks": {
+        "table": {
+            "name": "Nome",
+            "basePath": "Base Path",
+            "actions": "Ações"
+        },
+        "deleteModal": {
+            "title": "Mock",
+            "message": "Tem certeza que deseja remover o mock {name}?"
+        },
+        "errorMessage": {
+            "loadMockInformationFailure": "Falha ao carregar a lista de mocks. Tente novamente mais tarde."
+        }
+    },
+    "mockDetails": {
+        "label": {
+            "name": "Nome",
+            "basePath": "Base Path",
+            "summary": "Sumário",
+            "operations": "Operações",
+            "scenarios": "Cenários"
+        },
+        "operation": {
+            "table": {
+                "method": "Método",
+                "path": "Path",
+                "actions": "Ações"
+            },
+            "modal": {
+                "title": "Operação",
+                "method": "Método",
+                "path": "Path"
+            }
+        },
+        "scenario": {
+            "table": {
+                "order": "Ordem",
+                "name": "Nome",
+                "httpCode": "Código HTTP",
+                "isDefault": "Padrão",
+                "actions": "Ações"
+            },
+            "headers": {
+                "table": {
+                    "name": "Nome",
+                    "value": "Valor"
+                }
+            },
+            "modal": {
+                "title": "Cenário",
+                "name": "Nome",
+                "conditions": "Condições",
+                "httpCode": "HTTP Code",
+                "contentType": "Content-Type",
+                "body": "Body",
+                "headers": "Headers"
+            }
+        },
+        "errorMessage": {
+            "loadMockInformationFailure": "Não foi possível carregar as informações do mock. Por favor tente novamente mais tarde.",
+            "saveMockInformationFailure": "Não foi possível salvar o mock. Tente novamente mais tarde.",
+            "duplicateMethodPath": "Já existe uma combinação de operação com esse Método x Path. Por favor escolha outra."
+        }
+    }
+}
